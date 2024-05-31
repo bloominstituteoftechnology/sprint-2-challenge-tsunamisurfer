@@ -5,23 +5,67 @@
   <title>Web Sprint 2 Challenge</title>
   <script id="challenge">
     // 👉 CHALLENGE 1
+   
     function profileActivation(profile, reason) {
-
-    }
+      if (profile.active) {
+        if (!reason) {
+            return "confirm status manually";
+        }
+        profile.active = false;
+        profile.reason = reason;
+      } else {
+        profile.active = true;
+        delete profile.reason;
+      }
+      return profile;
+    }     
+    
+          
+    
 
     // 👉 CHALLENGE 2
     function mineSweeper(grid, x, y) {
-
+      if (x < 1 || y < 1 || x > 3 || y > 3) return "invalid coordinates"
+        let place = grid[y - 1][x - 1];
+      if (place === "🟥") {
+        return "🟥 💀";
+    } else if (place === "🟦") {
+        return "🟦 🥳";
     }
+}
+      
+         
 
     // 👉 CHALLENGE 3
     function booleanize(obj) {
-
+      for (let key in obj){
+        if (key.length > 9){
+        return "shorten all prop names to 9 chars or less";
+      }
+      if (obj[key] === 0){
+        obj[key] = false;
+      } else if (obj[key] === 1){
+        obj[key] = true;
+      } else if (obj[key] === null) {
+        delete obj[key];
+      }
     }
-
+    return obj;
+  }
     // 👉 CHALLENGE 4
     function scrub(text, forbidden) {
-
+    if (!text || forbidden.length === 0) {
+      return text;
+    }
+    let xWords = text.split(/\s+/)
+    for (let i = 0; i < xWords.length; i++){
+    let word = xWords[i].replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"") 
+    if(forbidden.includes(word.toLowerCase())){
+      xWords[i] = 'x'.repeat(word.length)
+    }
+    }
+    let scrubbedText = xWords.join(' ')
+    return scrubbedText
     }
 
     // 👉 CHALLENGE 5 (bonus, NOT graded)
